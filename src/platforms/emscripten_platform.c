@@ -61,6 +61,9 @@ EM_BOOL keyDownCallback(int eventType, const EmscriptenKeyboardEvent* e,
 	} else if (!strcmp(e->code, "Escape")) {
 		emscripten_platform.is_running = false;
 		handled = EM_TRUE;
+	} else if (!strcmp(e->code, "Space")) {
+		game->start = true;
+		handled = EM_TRUE;
 	}
 
 	else if (!strcmp(e->code, "KeyZ")) {
@@ -93,9 +96,10 @@ EM_BOOL keyUpCallback(int eventType, const EmscriptenKeyboardEvent* e,
 	} else if (!strcmp(e->code, "KeyZ")) {
 		game->rotate_left = false;
 		handled = EM_TRUE;
-	}
-
-	else if (!strcmp(e->code, "KeyX")) {
+	} else if (!strcmp(e->code, "Space")) {
+		game->start = false;
+		handled = EM_TRUE;
+	} else if (!strcmp(e->code, "KeyX")) {
 		game->rotate_right = false;
 		handled = EM_TRUE;
 	}
